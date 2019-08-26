@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="css/styles.css">
+	<title>Quiz</title>
+</head>
+<body>
+	<section class="quiz">
+		<div class="section-header">
+			<h2>Викторина - вопросы</h2>
+		</div>
+		<div class="questions"></div>
+		<div class="add_question">
+			<input type="text" name="question" id="question" placeholder="Введите вопрос (не больше одного)">
+			<input type="button" id="add_question" value="Добавить вопрос">
+		</div>
+		<div class="add_answer">
+			<input type="text" name="answer" id="answer" placeholder="Введите варианты ответов (от 2 до 10)">
+			<input type="button" value="Добавить ответ" id="add_answer">
+		</div>
+		<div class="add_to-server">
+			<input type="button" id="add_to-server" value="Отправить на сервер">
+		</div>
+		<div class="error">
+			<p></p>
+		</div>
+	</section>
+	<section class="tips">
+		<div class="rightSidebar">
+			<h4>Правила использования админ-панели викторины:</h4>
+			<p>1. Обязательно должен быть один вопрос и минимум два ответа</p>
+			<p>2. Первым нужно добавлять вопрос, дальше - ответы</p>
+			<p>3. Правильные ответы нужно помечать символом * в конце, например: Лермонтов*</p>
+			<input type="button" value="Скрыть" class="hideBtn">
+		</div>
+	</section>
+	<script src="js/adminPanel.js"></script>
+	<script src="js/script.js"></script>
+</body>
+</html>
