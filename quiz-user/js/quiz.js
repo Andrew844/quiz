@@ -92,8 +92,7 @@ class Quiz {
   //Запись ответов пользователя
   addUserAnswersToArr (answer) {
     if (answer.innerText) {
-			let currentEl = answer.innerText;
-      this.userAnswersArr.add(currentEl);
+      this.userAnswersArr.add(answer.innerText);
 		}
     return this.userAnswersArr;
   };

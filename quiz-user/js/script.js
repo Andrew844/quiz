@@ -9,7 +9,7 @@ let question = document.querySelector(".question"),
 		removeAnswers = document.querySelector(".removeAnswers");
 
 const quiz = new Quiz(question, answer, checkBtn, address, result, sectionQuiz, sectionEnd, resultBtn, removeAnswers);
-		
+
 quiz.startQuiz();
 quiz.checkBtn.addEventListener("click", () => quiz.clickOnCheckBtn());
 quiz.resultBtn.addEventListener("click", () => quiz.dataToServer());
