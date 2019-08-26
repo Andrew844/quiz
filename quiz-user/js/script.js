@@ -12,5 +12,4 @@ const quiz = new Quiz(question, answer, checkBtn, address, result, sectionQuiz, 
 		
 quiz.startQuiz();
 quiz.checkBtn.addEventListener("click", () => quiz.clickOnCheckBtn());
-quiz.answer.addEventListener("click", answer => quiz.addUserAnswersToArr(answer));
 quiz.resultBtn.addEventListener("click", () => quiz.dataToServer());

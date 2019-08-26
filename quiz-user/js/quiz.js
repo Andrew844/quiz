@@ -49,8 +49,14 @@ class Quiz {
       arrAnswers.id = i;
       arrAnswers.classList.add("questionsAndAnswers");
       arrAnswers.addEventListener("click", () => {
-        arrAnswers.style.backgroundColor = "rgb(20, 28, 252)";
-        arrAnswers.style.color = "white";
+				if (arrAnswers.style.color != "white") {
+					arrAnswers.style.backgroundColor = "rgb(20, 28, 252)";
+					arrAnswers.style.color = "white";
+					this.addUserAnswersToArr(arrAnswers);
+				} else {
+					arrAnswers.style.backgroundColor = "#eaeaea";
+					arrAnswers.style.color = "black";
+				}
       })
       answer.appendChild(arrAnswers);
     }
@@ -85,10 +91,10 @@ class Quiz {
   
   //Запись ответов пользователя
   addUserAnswersToArr (answer) {
-    if (answer.explicitOriginalTarget.firstChild.data) {
-      let currentEl = answer.explicitOriginalTarget.firstChild.data;
+    if (answer.innerText) {
+			let currentEl = answer.innerText;
       this.userAnswersArr.add(currentEl);
-    }
+		}
     return this.userAnswersArr;
   };
 
