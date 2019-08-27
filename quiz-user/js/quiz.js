@@ -56,6 +56,7 @@ class Quiz {
 				} else {
 					arrAnswers.style.backgroundColor = "#eaeaea";
 					arrAnswers.style.color = "black";
+					this.removeUserAnswers(arrAnswers.innerText);
 				}
       })
       answer.appendChild(arrAnswers);
@@ -163,8 +164,9 @@ class Quiz {
 								window.location.reload();
 	}
 
-	removeAnswers () {
-		this.userAnswersArr
+	// Удаление ответов из массива
+	removeUserAnswers (answer) {
+		if (this.userAnswersArr.has(answer)) this.userAnswersArr.delete(answer);
 	}
 
 	//Действия при клике на кнопку "Проверить ответы"
