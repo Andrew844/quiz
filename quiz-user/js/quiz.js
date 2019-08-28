@@ -148,20 +148,35 @@ class Quiz {
 
   //Получение имени пользователя и отправка результатов на сервер
   async dataToServer () {
-				await	fetch(this.address + "useranswers", {
-								method: "POST",
-								body: JSON.stringify({
-									name: document.querySelector("section.end .enter-name #enter-name__input").value,
-									score: this.counterRightAnswers
-								}),
-								headers: {
-									"Content-type": "application/json; charset=UTF-8"
-								}
-							})
-								.catch(console.log);
-						
-								document.querySelector("#enter-name__input").value = "";
-								window.location.reload();
+				if (document.querySelector("#enter-name__input").value != "") {
+					await	fetch(this.address + "useranswers", {
+						method: "POST",
+						body: JSON.stringify({
+							name: document.querySelector("section.end .enter-name #enter-name__input").value,
+							score: this.counterRightAnswers
+						}),
+						headers: {
+							"Content-type": "application/json; charset=UTF-8"
+						}
+					})
+						.catch(console.log);
+				
+						document.querySelector("#enter-name__input").value = "";
+						window.location.reload();
+				} else {
+					this.showErrorMessage(700, "Ошибка: не введено имя пользователя");
+				}
+	}
+
+	// Вывод сообщения об ошибке при отправке данных на сервер для незаполненной формы
+	showErrorMessage (timeout, errorText) {
+		let errorMessage = document.createElement("p");
+		errorMessage.innerText = errorText;
+		errorMessage.style = "height: 45px; width: 350px; line-height: 45px; background-color: red; color: white; margin-top: -24.9%; float: right; border-radius: 5px; display: block;";
+		document.querySelector(".enter-name").append(errorMessage);
+		setTimeout(() => {
+			errorMessage.style = "display: none;"
+		}, timeout);
 	}
 
 	// Удаление ответов из массива
