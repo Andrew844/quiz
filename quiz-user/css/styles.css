@@ -1,4 +1,91 @@
+section.leaderboard {
+  margin: auto;
+  width: 400px;
+  height: 430px;
+  text-align: center;
+  -webkit-box-shadow: 1px 2px 10px 1px;
+          box-shadow: 1px 2px 10px 1px;
+  border-radius: 4px;
+  margin-top: calc((100% - 400px) / 8);
+  padding-top: 25px;
+  font-family: sans-serif;
+}
+
+section.leaderboard h2 {
+  font-weight: 400;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+section.leaderboard .graphs {
+  width: 300px;
+  background-color: #a8a8a8;
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-radius: 4px 4px 0 0;
+  margin-bottom: -5px;
+}
+
+section.leaderboard .graphs p {
+  width: 50%;
+  text-align: center;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+section.leaderboard .results {
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0px 0px 10px 1px #a8a8a8;
+          box-shadow: inset 0px 0px 10px 1px #a8a8a8;
+  width: 300px;
+  height: 230px;
+  margin: auto;
+  scrollbar-width: none;
+  overflow-y: scroll;
+}
+
+section.leaderboard .results div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+}
+
+section.leaderboard .results div:nth-child(2n + 2) {
+  background-color: #c2c2c2;
+  color: #ffffff;
+}
+
+section.leaderboard .results div p {
+  width: 50%;
+}
+
+section.leaderboard input[type="button"] {
+  background-color: green;
+  border: none;
+  border-radius: 4px;
+  height: 40px;
+  width: 200px;
+  color: white;
+  margin-top: 20px;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+section.leaderboard input[type="button"]:hover {
+  background-color: #141cfc;
+}
+
 section.quiz {
+  display: none;
   font-family: sans-serif;
   -webkit-box-shadow: 1px 2px 10px 1px;
           box-shadow: 1px 2px 10px 1px;

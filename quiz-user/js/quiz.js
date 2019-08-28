@@ -10,7 +10,10 @@ class Quiz {
     this.userAnswersArr = new Set();
 		this.rightAnswersArr = new Set();
 		this.removeAnswers = removeAnswersBtn;
-    this.sectionQuiz = sectionQuiz;
+		this.sectionLeaderboard = document.querySelector(".leaderboard");
+		this.leaderboardResults = document.querySelector(".leaderboard .results");
+		this.startQuizBtn = document.querySelector(".leaderboard #start-quiz");
+		this.sectionQuiz = sectionQuiz;
     this.counterRightAnswers = 0;
     this.counterQuestions = 0;
     this.counterAnswers = 0;
@@ -141,7 +144,6 @@ class Quiz {
       this.sectionEnd.style.display = "block";
       this.result.innerHTML += "<i> " + rightAnswers + " из " + this.rightAnswersArr.size + "</i>";
     } else {
-      this.sectionQuiz.style.display = "block";
       this.sectionEnd.style.display = "none";
     }
   }
@@ -172,11 +174,38 @@ class Quiz {
 	showErrorMessage (timeout, errorText) {
 		let errorMessage = document.createElement("p");
 		errorMessage.innerText = errorText;
-		errorMessage.style = "height: 45px; width: 350px; line-height: 45px; background-color: red; color: white; margin-top: -24.9%; float: right; border-radius: 5px; display: block;";
+		errorMessage.style = `height: 45px; width: 350px; 
+													line-height: 45px; background-color: red; 
+													color: white; margin-top: -24.9%; 
+													float: right; border-radius: 5px; 
+													display: block;`;
 		document.querySelector(".enter-name").append(errorMessage);
 		setTimeout(() => {
 			errorMessage.style = "display: none;"
 		}, timeout);
+	}
+
+	//Действия при клике на кнопку "Начать викторину" в таблице лидеров
+	startQuizClick () {
+		this.startQuizBtn.addEventListener("click", () => {
+			this.sectionQuiz.style = `display: block`;
+			this.sectionLeaderboard.style = `display: none`;
+		});
+	}
+
+	async editLeaderboard () {
+		await fetch (this.address + "useranswers")
+						.then((response) => response.json())
+						.then((users) => {
+							users.forEach(({name, score}) => {
+								let user = document.createElement("div");
+								user.innerHTML = `<p>${name}</p>`;
+								user.innerHTML += `<p>${score}</p>`;
+								console.log(user);
+								this.leaderboardResults.append(user);
+							});
+						})
+						.catch(console.log);
 	}
 
 	// Удаление ответов из массива
@@ -194,6 +223,8 @@ class Quiz {
 
 	//Действия, которые должны выполняться до начала викторины
 	startQuiz () {
+		this.editLeaderboard();
+		this.startQuizClick();
 		this.displayQuestionsAndAnswers();
 		this.count();
 	}
