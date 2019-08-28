@@ -146,6 +146,7 @@ class Quiz {
     }
   }
 
+	
   //Получение имени пользователя и отправка результатов на сервер
   async dataToServer () {
 				if (document.querySelector("#enter-name__input").value != "") {
