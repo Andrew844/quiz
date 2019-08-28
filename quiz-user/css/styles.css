@@ -49,6 +49,10 @@ section.leaderboard .results {
   overflow-y: scroll;
 }
 
+section.leaderboard .results::-webkit-scrollbar {
+  width: 0;
+}
+
 section.leaderboard .results div {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -133,6 +137,10 @@ section.quiz .answers {
   scrollbar-width: none;
   overflow-y: scroll;
   margin: auto;
+}
+
+section.quiz .answers::-webkit-scrollbar {
+  width: 0;
 }
 
 section.quiz .answers p {

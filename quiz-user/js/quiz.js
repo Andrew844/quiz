@@ -13,6 +13,7 @@ class Quiz {
 		this.sectionLeaderboard = document.querySelector(".leaderboard");
 		this.leaderboardResults = document.querySelector(".leaderboard .results");
 		this.startQuizBtn = document.querySelector(".leaderboard #start-quiz");
+		this.usersInLeaderboard = [];
 		this.sectionQuiz = sectionQuiz;
     this.counterRightAnswers = 0;
     this.counterQuestions = 0;
@@ -201,7 +202,6 @@ class Quiz {
 								let user = document.createElement("div");
 								user.innerHTML = `<p>${name}</p>`;
 								user.innerHTML += `<p>${score}</p>`;
-								console.log(user);
 								this.leaderboardResults.append(user);
 							});
 						})
