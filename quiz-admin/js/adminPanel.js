@@ -1,5 +1,9 @@
 class AdminPanel {
 	constructor (questions, question, answer, addQuestion, addAnswer, addToServer, error, address, MQL, MAL) {
+		this.showQuestionsBtn = document.querySelector("#show-questions");
+		this.sectionEditQuestions = document.querySelector("section.edit-questions");
+		this.sectionQuiz = document.querySelector(".quiz");
+		this.backToQuiz = document.querySelector("#back");
 		this.hideBtn = document.querySelector(".hideBtn");
 		this.tips = document.querySelector(".tips");
 		this.addQuestionBtn = addQuestion;
@@ -86,7 +90,51 @@ class AdminPanel {
 		}
 	}
 	
+	//При клике на кнопку "Скрыть" в правилах использования админ-панели
 	hideTips () {
 			this.tips.style.display = "none";
-	} 
+	}
+
+	//Инициализация библиотеки materialize css
+	initializeMaterialCss () {
+		document.addEventListener('DOMContentLoaded', function() {
+			let elems = document.querySelectorAll('.collapsible'),
+					instances = M.Collapsible.init(elems);
+		});
+	}
+
+	//Показать список всех вопросов при клике на кнопку "Показать вопросы"
+	showQuestions () {
+		if (this.sectionEditQuestions.style = "display: none") {
+			this.tips.style.display = "none";
+			this.sectionQuiz.style = "display: none;";
+			this.sectionEditQuestions.style = "display: block";
+		} else {
+			this.tips.style.display = "block";
+			this.sectionQuiz.style = "display: block;";
+			this.sectionEditQuestions.style = "display: none"
+		}
+	}
+
+	//Показывает админ-панель при клике на кнопку "Назад"
+	showQuiz () {
+		if (this.sectionEditQuestions.style = "display: block") {
+			this.tips.style.display = "block";
+			this.sectionQuiz.style = "display: block;";
+			this.sectionEditQuestions.style = "display: none";
+		} else {
+			this.sectionQuiz.style = "display: none;";
+			this.sectionEditQuestions.style = "display: block"
+		}
+	}
+
+	startQuiz () {
+		this.initializeMaterialCss();
+		this.backToQuiz.addEventListener("click", () => this.showQuiz())
+		this.hideBtn.addEventListener("click", () => this.hideTips());
+		this.addQuestionBtn.addEventListener("click", () => this.addQuestion());
+		this.addAnswerBtn.addEventListener("click", () => this.addAnswer());
+		this.addToServerBtn.addEventListener("click", () => this.addToServer());
+		this.showQuestionsBtn.addEventListener("click", () => this.showQuestions());
+	}
 }

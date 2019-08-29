@@ -12,7 +12,4 @@ let	questions = document.querySelector(".questions"),
 
 const adminPanel = new AdminPanel(questions, question, answer, addQuestion, addAnswer, addToServer, error, address, MQL, MAL);
 
-adminPanel.hideBtn.addEventListener("click", () => adminPanel.hideTips());
-adminPanel.addQuestionBtn.addEventListener("click", () => adminPanel.addQuestion());
-adminPanel.addAnswerBtn.addEventListener("click", () => adminPanel.addAnswer());
-adminPanel.addToServerBtn.addEventListener("click", () => adminPanel.addToServer());
+adminPanel.startQuiz();

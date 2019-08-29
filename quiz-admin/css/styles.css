@@ -1,16 +1,19 @@
 section.quiz {
   font-family: sans-serif;
-  height: 600px;
+  height: 630px;
   width: 600px;
   margin: auto;
+  margin-top: 1.5%;
+  padding-top: 1px;
   -webkit-box-shadow: 0 2px 4px 1px;
           box-shadow: 0 2px 4px 1px;
-  padding-top: 5px;
+  font-size: 15px;
 }
 
 section.quiz .section-header h2 {
   text-align: center;
   text-transform: uppercase;
+  font-size: 28px;
   font-weight: 400;
 }
 
@@ -21,6 +24,10 @@ section.quiz .questions {
   overflow: hidden;
   overflow-y: scroll;
   scrollbar-width: none;
+}
+
+section.quiz .questions::-webkit-scrollbar {
+  width: 0;
 }
 
 section.quiz .questions p {
@@ -43,7 +50,7 @@ section.quiz .questions p.answer {
   margin: auto;
   margin-top: 10px;
   margin-bottom: 10px;
-  margin-left: 25px;
+  margin-left: 45px;
   -webkit-box-shadow: 0 2px 4px 1px;
           box-shadow: 0 2px 4px 1px;
   border-radius: 4px;
@@ -70,8 +77,8 @@ section.quiz .add_question input[type="text"] {
   text-align: left;
   margin-top: 15px;
   border: none;
-  -webkit-box-shadow: 1px 1px 1px 1px;
-          box-shadow: 1px 1px 1px 1px;
+  -webkit-box-shadow: 1px 1px 1px 1px #808080;
+          box-shadow: 1px 1px 1px 1px #808080;
   height: 30px;
   width: 350px;
   border-radius: 4px;
@@ -113,8 +120,8 @@ section.quiz .add_answer input[type="text"] {
   text-align: left;
   margin-top: 15px;
   border: none;
-  -webkit-box-shadow: 1px 1px 1px 1px;
-          box-shadow: 1px 1px 1px 1px;
+  -webkit-box-shadow: 1px 1px 1px 1px #808080;
+          box-shadow: 1px 1px 1px 1px #808080;
   height: 30px;
   width: 350px;
   border-radius: 4px;
@@ -155,7 +162,7 @@ section.quiz .add_to-server {
 
 section.quiz .add_to-server input[type="button"] {
   height: 50px;
-  background-color: red;
+  background-color: #3d3d8a;
   border: none;
   color: white;
   border-radius: 4px;
@@ -169,6 +176,10 @@ section.quiz .add_to-server input[type="button"]:hover {
   transition: .5s;
 }
 
+section.quiz .add_to-server input[type="button"]:nth-child(2n + 2) {
+  margin-left: 20px;
+}
+
 section.quiz .error {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -176,6 +187,7 @@ section.quiz .error {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
+  margin-top: -625px;
 }
 
 section.quiz .error p {
@@ -187,7 +199,6 @@ section.quiz .error p {
   padding-right: 10px;
   padding-bottom: 7px;
   padding-left: 10px;
-  margin-top: -590px;
   display: none;
 }
 
@@ -201,11 +212,11 @@ section.tips .rightSidebar {
           flex-direction: column;
   float: right;
   font-family: sans-serif;
-  width: 255px;
+  width: 300px;
   -webkit-box-shadow: 0 2px 4px 1px;
           box-shadow: 0 2px 4px 1px;
   border-radius: 2px;
-  margin-top: -605px;
+  margin-top: -630px;
   margin-right: 10px;
   padding-left: 30px;
   padding-right: 30px;
@@ -218,6 +229,9 @@ section.tips .rightSidebar p {
 
 section.tips .rightSidebar h4 {
   text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 15px;
 }
 
 section.tips .rightSidebar input[type="button"].hideBtn {
@@ -234,5 +248,69 @@ section.tips .rightSidebar input[type="button"].hideBtn:hover {
   transition: .4s;
   background-color: #2dff1e;
   color: black;
+}
+
+section.edit-questions {
+  font-family: sans-serif;
+  height: auto;
+  width: 600px;
+  margin: auto;
+  -webkit-box-shadow: 0 2px 4px 1px;
+          box-shadow: 0 2px 4px 1px;
+  padding-top: 5px;
+  padding-bottom: 25px;
+  margin-top: calc((100% - 600px) / 22);
+  display: none;
+}
+
+section.edit-questions .section-header {
+  margin-bottom: 50px;
+}
+
+section.edit-questions .section-header h2 {
+  font-size: 25px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+section.edit-questions .all-questions {
+  width: 450px;
+  height: 430px;
+  overflow: hidden;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  margin: auto;
+}
+
+section.edit-questions .all-questions::-webkit-scrollbar {
+  width: 0;
+}
+
+section.edit-questions .save-changes {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+section.edit-questions .save-changes input[type="button"] {
+  border: none;
+  border-radius: 5px;
+  height: 40px;
+  background-color: green;
+  color: white;
+}
+
+section.edit-questions .save-changes input[type="button"]:hover {
+  -webkit-transition: .4s;
+  transition: .4s;
+  background-color: #2dff1e;
+  color: black;
+}
+
+section.edit-questions .save-changes input[type="button"]:nth-last-child(1) {
+  margin-left: 50px;
 }
 /*# sourceMappingURL=styles.css.map */

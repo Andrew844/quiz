@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 	<link rel="stylesheet" href="css/styles.css">
 	<title>Викторина - вопросы</title>
 </head>
@@ -21,13 +22,15 @@
 			<input type="text" name="answer" id="answer" placeholder="Введите варианты ответов (от 2 до 10)">
 			<input type="button" value="Добавить ответ" id="add_answer">
 		</div>
-		<div class="add_to-server">
+		<div class="add_to-server show-questions">
 			<input type="button" id="add_to-server" value="Отправить на сервер">
+			<input type="button" id="show-questions" value="Посмотреть все вопросы">
 		</div>
 		<div class="error">
 			<p></p>
 		</div>
 	</section>
+	
 	<section class="tips">
 		<div class="rightSidebar">
 			<h4>Правила использования админ-панели викторины:</h4>
@@ -37,6 +40,34 @@
 			<input type="button" value="Скрыть" class="hideBtn">
 		</div>
 	</section>
+
+	<section class="edit-questions">
+		<div class="section-header">
+			<h2>Вопросы викторины</h2>
+		</div>
+		<div class="all-questions">
+				<ul class="collapsible">
+						<li>
+							<div class="collapsible-header">First</div>
+							<div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+						</li>
+						<li>
+							<div class="collapsible-header">Second</div>
+							<div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+						</li>
+						<li>
+							<div class="collapsible-header">Third</div>
+							<div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+						</li>
+					</ul>
+		</div>
+		<div class="save-changes back">
+			<input type="button" id="save-changes" value="Сохранить изменения">
+			<input type="button" id="back" value="Вернуться назад">
+		</div>
+	</section>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 	<script src="js/adminPanel.js"></script>
 	<script src="js/script.js"></script>
 </body>
