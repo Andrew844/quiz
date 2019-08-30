@@ -1,7 +1,8 @@
 class AdminPanel {
 	constructor (questions, question, answer, addQuestion, addAnswer, addToServer, error, address, MQL, MAL) {
-		this.showQuestionsBtn = document.querySelector("#show-questions");
 		this.sectionEditQuestions = document.querySelector("section.edit-questions");
+		this.editAllQuestions = document.querySelector(".edit-all_questions");
+		this.showQuestionsBtn = document.querySelector("#show-questions");
 		this.sectionQuiz = document.querySelector(".quiz");
 		this.backToQuiz = document.querySelector("#back");
 		this.hideBtn = document.querySelector(".hideBtn");
@@ -128,13 +129,39 @@ class AdminPanel {
 		}
 	}
 
+	//Выводит все вопросы и ответы к ним при клике на кнопку "Показать все вопросы"
+	async showQuestionsAndAnswers () {
+		await fetch(this.address + "/questions")
+							.then(response => response.json())
+							.then(questionsAndAnswersArr => {
+								questionsAndAnswersArr.forEach(elements => {
+									let li = document.createElement("li"),
+											question = document.createElement("div");
+										question.classList.add("collapsible-header");
+										question.innerText = elements.question;
+										li.append(question);
+										for(let i = 0; i < elements.answers.length; i++) {
+											let answer = document.createElement("div");
+											answer.innerText = elements.answers[i];
+											answer.classList.add("collapsible-body");
+											answer.style = `background-color: #cfcfcf;
+																			color: white;`;
+											li.append(answer);
+										}
+									this.editAllQuestions.append(li);
+								});
+							})
+							.catch(console.log);
+	}
+
 	startQuiz () {
 		this.initializeMaterialCss();
-		this.backToQuiz.addEventListener("click", () => this.showQuiz())
 		this.hideBtn.addEventListener("click", () => this.hideTips());
-		this.addQuestionBtn.addEventListener("click", () => this.addQuestion());
+		this.backToQuiz.addEventListener("click", () => this.showQuiz())
 		this.addAnswerBtn.addEventListener("click", () => this.addAnswer());
+		this.addQuestionBtn.addEventListener("click", () => this.addQuestion());
 		this.addToServerBtn.addEventListener("click", () => this.addToServer());
 		this.showQuestionsBtn.addEventListener("click", () => this.showQuestions());
+		this.showQuestionsBtn.addEventListener("click", () => this.showQuestionsAndAnswers());
 	}
 }

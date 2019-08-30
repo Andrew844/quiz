@@ -259,7 +259,7 @@ section.edit-questions {
           box-shadow: 0 2px 4px 1px;
   padding-top: 5px;
   padding-bottom: 25px;
-  margin-top: calc((100% - 600px) / 22);
+  margin-top: calc((100% - 600px) / 30);
   display: none;
 }
 
@@ -282,6 +282,10 @@ section.edit-questions .all-questions {
   margin: auto;
 }
 
+section.edit-questions .all-questions ul.edit-all_questions li .collapsible-header {
+  border-radius: 5px;
+}
+
 section.edit-questions .all-questions::-webkit-scrollbar {
   width: 0;
 }
@@ -293,6 +297,8 @@ section.edit-questions .save-changes {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  margin-top: 20px;
+  margin-bottom: -10px;
 }
 
 section.edit-questions .save-changes input[type="button"] {
@@ -310,7 +316,37 @@ section.edit-questions .save-changes input[type="button"]:hover {
   color: black;
 }
 
-section.edit-questions .save-changes input[type="button"]:nth-last-child(1) {
-  margin-left: 50px;
+section.edit-questions .back {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+section.edit-questions .back button {
+  border: none;
+  border-radius: 5px;
+  height: 40px;
+  font-size: 40px;
+  background-color: white;
+  color: #2c8a36;
+  width: auto;
+  margin-top: -580px;
+  margin-left: 5px;
+}
+
+section.edit-questions .back button:hover {
+  -webkit-transition: .4s;
+  transition: .4s;
+  color: #3d3d8a;
+}
+
+section.edit-questions .back button .fas {
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+section.edit-questions .back button .fas:hover {
+  -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
 }
 /*# sourceMappingURL=styles.css.map */
