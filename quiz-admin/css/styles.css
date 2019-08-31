@@ -282,8 +282,48 @@ section.edit-questions .all-questions {
   margin: auto;
 }
 
-section.edit-questions .all-questions ul.edit-all_questions li .collapsible-header {
-  border-radius: 5px;
+section.edit-questions .all-questions ul.edit-all_questions li .collapsible-header .edit-icons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: auto;
+}
+
+section.edit-questions .all-questions ul.edit-all_questions li .collapsible-header .edit-icons .fas, section.edit-questions .all-questions ul.edit-all_questions li .collapsible-header .edit-icons .far {
+  margin: auto;
+  font-size: 20px;
+}
+
+section.edit-questions .all-questions ul.edit-all_questions li .collapsible-header .edit-icons .fas.fa-trash-alt, section.edit-questions .all-questions ul.edit-all_questions li .collapsible-header .edit-icons .far.fa-trash-alt {
+  color: #ff432e;
+}
+
+section.edit-questions .all-questions ul.edit-all_questions li .collapsible-header .edit-icons .fas.fa-plus, section.edit-questions .all-questions ul.edit-all_questions li .collapsible-header .edit-icons .far.fa-plus {
+  color: #4287f5;
+}
+
+section.edit-questions .all-questions ul.edit-all_questions li .collapsible-header .edit-icons .fas.fa-edit, section.edit-questions .all-questions ul.edit-all_questions li .collapsible-header .edit-icons .far.fa-edit {
+  color: #26bd00;
+}
+
+section.edit-questions .all-questions ul.edit-all_questions li .collapsible-body .edit-icons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  float: right;
+}
+
+section.edit-questions .all-questions ul.edit-all_questions li .collapsible-body .edit-icons .fas, section.edit-questions .all-questions ul.edit-all_questions li .collapsible-body .edit-icons .far {
+  font-size: 20px;
+}
+
+section.edit-questions .all-questions ul.edit-all_questions li .collapsible-body .edit-icons .fas {
+  color: #ff432e;
+  margin-left: 10px;
+}
+
+section.edit-questions .all-questions ul.edit-all_questions li .collapsible-body .edit-icons .far {
+  color: #26bd00;
 }
 
 section.edit-questions .all-questions::-webkit-scrollbar {

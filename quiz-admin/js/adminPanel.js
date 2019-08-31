@@ -136,16 +136,39 @@ class AdminPanel {
 							.then(questionsAndAnswersArr => {
 								questionsAndAnswersArr.forEach(elements => {
 									let li = document.createElement("li"),
-											question = document.createElement("div");
+											question = document.createElement("div"),
+											editIcon = document.createElement("i"),
+											trashIcon = document.createElement("i"),
+											plusIcon = document.createElement("i"),
+											icons = document.createElement("div");
+										icons.classList.add("edit-icons");
+										editIcon.classList.add("far");
+										editIcon.classList.add("fa-edit");
+										trashIcon.classList.add("fas");
+										trashIcon.classList.add("fa-trash-alt");
+										plusIcon.classList.add("fas");
+										plusIcon.classList.add("fa-plus");
+										icons.append(editIcon, trashIcon, plusIcon);
 										question.classList.add("collapsible-header");
 										question.innerText = elements.question;
+										question.append(icons);
 										li.append(question);
 										for(let i = 0; i < elements.answers.length; i++) {
-											let answer = document.createElement("div");
+											let answer = document.createElement("div"),
+													editIcon = document.createElement("i"),
+													trashIcon = document.createElement("i"),
+													icons = document.createElement("div");
+											icons.classList.add("edit-icons");
+											editIcon.classList.add("far");
+											editIcon.classList.add("fa-edit");
+											trashIcon.classList.add("fas");
+											trashIcon.classList.add("fa-trash-alt");
+											icons.append(editIcon, trashIcon);
 											answer.innerText = elements.answers[i];
 											answer.classList.add("collapsible-body");
-											answer.style = `background-color: #cfcfcf;
-																			color: white;`;
+											answer.style = `background-color: #ccd9ff;
+																			color: #3c4ac9;`;
+											answer.append(icons);
 											li.append(answer);
 										}
 									this.editAllQuestions.append(li);
