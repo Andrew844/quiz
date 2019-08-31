@@ -136,45 +136,48 @@ class AdminPanel {
 							.then(questionsAndAnswersArr => {
 								questionsAndAnswersArr.forEach(elements => {
 									let li = document.createElement("li"),
-											question = document.createElement("div"),
-											editIcon = document.createElement("i"),
-											trashIcon = document.createElement("i"),
-											plusIcon = document.createElement("i"),
-											icons = document.createElement("div");
-										icons.classList.add("edit-icons");
-										editIcon.classList.add("far");
-										editIcon.classList.add("fa-edit");
-										trashIcon.classList.add("fas");
-										trashIcon.classList.add("fa-trash-alt");
-										plusIcon.classList.add("fas");
-										plusIcon.classList.add("fa-plus");
-										icons.append(editIcon, trashIcon, plusIcon);
+											question = document.createElement("div");
 										question.classList.add("collapsible-header");
 										question.innerText = elements.question;
-										question.append(icons);
+										question.append(this.createIcons("question"));
 										li.append(question);
 										for(let i = 0; i < elements.answers.length; i++) {
-											let answer = document.createElement("div"),
-													editIcon = document.createElement("i"),
-													trashIcon = document.createElement("i"),
-													icons = document.createElement("div");
-											icons.classList.add("edit-icons");
-											editIcon.classList.add("far");
-											editIcon.classList.add("fa-edit");
-											trashIcon.classList.add("fas");
-											trashIcon.classList.add("fa-trash-alt");
-											icons.append(editIcon, trashIcon);
+											let answer = document.createElement("div");
 											answer.innerText = elements.answers[i];
 											answer.classList.add("collapsible-body");
 											answer.style = `background-color: #ccd9ff;
 																			color: #3c4ac9;`;
-											answer.append(icons);
+											answer.append(this.createIcons());
 											li.append(answer);
 										}
 									this.editAllQuestions.append(li);
 								});
 							})
 							.catch(console.log);
+	}
+
+	createIcons (type) {
+		if (type === "question") {
+			let	editIcon = document.createElement("i"),
+					trashIcon = document.createElement("i"),
+					icons = document.createElement("div"),
+					plusIcon = document.createElement("i");
+				plusIcon.classList.add("fas", "fa-plus");
+				icons.classList.add("edit-icons");
+				editIcon.classList.add("far", "fa-edit");
+				trashIcon.classList.add("fas", "fa-trash-alt");
+				icons.append(editIcon, trashIcon, plusIcon);
+				return icons;
+		} else {
+			let	editIcon = document.createElement("i"),
+					trashIcon = document.createElement("i"),
+					icons = document.createElement("div");
+				icons.classList.add("edit-icons");
+				editIcon.classList.add("far", "fa-edit");
+				trashIcon.classList.add("fas", "fa-trash-alt");
+				icons.append(editIcon, trashIcon);
+				return icons;
+		}
 	}
 
 	startQuiz () {
