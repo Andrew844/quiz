@@ -2,6 +2,7 @@ class AdminPanel {
 	constructor (questions, question, answer, addQuestion, addAnswer, addToServer, error, address, MQL, MAL) {
 		this.sectionEditQuestions = document.querySelector("section.edit-questions");
 		this.editAllQuestions = document.querySelector(".edit-all_questions");
+		this.preloaderSection = document.querySelector("section.preloader");
 		this.showQuestionsBtn = document.querySelector("#show-questions");
 		this.sectionQuiz = document.querySelector(".quiz");
 		this.backToQuiz = document.querySelector("#back");
@@ -106,56 +107,50 @@ class AdminPanel {
 
 	//Показать список всех вопросов при клике на кнопку "Показать вопросы"
 	showQuestions () {
-		if (this.sectionEditQuestions.style = "display: none") {
+		if (this.sectionEditQuestions.style.display = "none") {
 			this.tips.style.display = "none";
 			this.sectionQuiz.style = "display: none;";
 			this.sectionEditQuestions.style = "display: block";
-		} else {
-			this.tips.style.display = "block";
-			this.sectionQuiz.style = "display: block;";
-			this.sectionEditQuestions.style = "display: none"
 		}
 	}
 
 	//Показывает админ-панель при клике на кнопку "Назад"
 	showQuiz () {
-		if (this.sectionEditQuestions.style = "display: block") {
+		if (this.sectionEditQuestions.style.display === "block") {
 			this.tips.style.display = "block";
 			this.sectionQuiz.style = "display: block;";
 			this.sectionEditQuestions.style = "display: none";
-		} else {
-			this.sectionQuiz.style = "display: none;";
-			this.sectionEditQuestions.style = "display: block"
 		}
 	}
 
 	//Выводит все вопросы и ответы к ним при клике на кнопку "Показать все вопросы"
-	async showQuestionsAndAnswers () {
-		await fetch(this.address + "/questions")
-							.then(response => response.json())
-							.then(questionsAndAnswersArr => {
-								questionsAndAnswersArr.forEach(elements => {
-									let li = document.createElement("li"),
-											question = document.createElement("div");
-										question.classList.add("collapsible-header");
-										question.innerText = elements.question;
-										question.append(this.createIcons("question"));
-										li.append(question);
-										for(let i = 0; i < elements.answers.length; i++) {
-											let answer = document.createElement("div");
-											answer.innerText = elements.answers[i];
-											answer.classList.add("collapsible-body");
-											answer.style = `background-color: #ccd9ff;
-																			color: #3c4ac9;`;
-											answer.append(this.createIcons());
-											li.append(answer);
-										}
-									this.editAllQuestions.append(li);
-								});
-							})
-							.catch(console.log);
+	 showQuestionsAndAnswers () {
+		fetch(this.address + "/questions")
+			.then(response => response.json())
+			.then(questionsAndAnswersArr => {
+				questionsAndAnswersArr.forEach(elements => {
+					let li = document.createElement("li"),
+							question = document.createElement("div");
+						question.classList.add("collapsible-header");
+						question.innerText = elements.question;
+						question.append(this.createIcons("question"));
+						li.append(question);
+						for(let i = 0; i < elements.answers.length; i++) {
+							let answer = document.createElement("div");
+							answer.innerText = elements.answers[i];
+							answer.classList.add("collapsible-body");
+							answer.style = `background-color: #ccd9ff;
+															color: #3c4ac9;`;
+							answer.append(this.createIcons());
+							li.append(answer);
+						}
+					this.editAllQuestions.append(li);
+				});
+			})
+			.catch(console.log);
 	}
 
+ 	// Создаёт иконки для каждого ответа/вопроса
 	createIcons (type) {
 		if (type === "question") {
 			let	editIcon = document.createElement("i"),
@@ -180,6 +175,7 @@ class AdminPanel {
 		}
 	}
 
+	//Запускает все функции
 	startQuiz () {
 		this.initializeMaterialCss();
 		this.hideBtn.addEventListener("click", () => this.hideTips());
