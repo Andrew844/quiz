@@ -389,18 +389,4 @@ section.edit-questions .back button .fas:hover {
   -webkit-transform: rotate(360deg);
           transform: rotate(360deg);
 }
-
-section.preloader {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  margin-top: -27%;
-}
-
-section.preloader .preloader-wrapper {
-  display: none;
-}
 /*# sourceMappingURL=styles.css.map */
