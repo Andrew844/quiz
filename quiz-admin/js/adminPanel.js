@@ -135,15 +135,7 @@ class AdminPanel {
 						question.innerText = elements.question;
 						question.append(this.createIcons("question"));
 						li.append(question);
-						for(let i = 0; i < elements.answers.length; i++) {
-							let answer = document.createElement("div");
-							answer.innerText = elements.answers[i];
-							answer.classList.add("collapsible-body");
-							answer.style = `background-color: #ccd9ff;
-															color: #3c4ac9;`;
-							answer.append(this.createIcons());
-							li.append(answer);
-						}
+						li.append(this.makeAnswersArr(elements));
 					this.editAllQuestions.append(li);
 				});
 			})
@@ -173,6 +165,21 @@ class AdminPanel {
 				icons.append(editIcon, trashIcon);
 				return icons;
 		}
+	}
+
+	makeAnswersArr ({answers}) {
+		let allAnswersEl = document.createElement("div");
+		for (let i = 0; i < answers.length; i++) {
+			let answer = document.createElement("div");
+			answer.innerText = answers[i];
+			answer.append(this.createIcons());
+			answer.classList.add("answer");
+			allAnswersEl.append(answer);
+		}
+		allAnswersEl.style = `background-color: #ccd9ff;
+													color: #3c4ac9;`;
+		allAnswersEl.classList.add("collapsible-body");
+		return allAnswersEl;
 	}
 
 	//Запускает все функции
