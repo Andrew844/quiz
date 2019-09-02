@@ -103,6 +103,10 @@ class AdminPanel {
 			let elems = document.querySelectorAll('.collapsible'),
 					instances = M.Collapsible.init(elems);
 		});
+		document.addEventListener('DOMContentLoaded', function() {
+			var elems = document.querySelectorAll('.modal'),
+					instances = M.Modal.init(elems);
+		});
 	}
 
 	//Показать список всех вопросов при клике на кнопку "Показать вопросы"
@@ -130,10 +134,13 @@ class AdminPanel {
 			.then(questionsAndAnswersArr => {
 				questionsAndAnswersArr.forEach(elements => {
 					let li = document.createElement("li"),
-							question = document.createElement("div");
+							question = document.createElement("div"),
+							questionText = document.createElement("div");
+						questionText.classList.add("question-text");
+						questionText.innerText = elements.question;
 						question.classList.add("collapsible-header");
-						question.innerText = elements.question;
-						question.append(this.createIcons("question"));
+						question.append(questionText, this.createIcons("question"));
+						li.id = elements.id;
 						li.append(question);
 						li.append(this.makeAnswersArr(elements));
 					this.editAllQuestions.append(li);
@@ -148,12 +155,39 @@ class AdminPanel {
 			let	editIcon = document.createElement("i"),
 					trashIcon = document.createElement("i"),
 					icons = document.createElement("div"),
-					plusIcon = document.createElement("i");
+					plusIcon = document.createElement("i"),
+					editIconLink = document.createElement("a"),
+					plusIconLink = document.createElement("a");
 				plusIcon.classList.add("fas", "fa-plus");
 				icons.classList.add("edit-icons");
 				editIcon.classList.add("far", "fa-edit");
 				trashIcon.classList.add("fas", "fa-trash-alt");
-				icons.append(editIcon, trashIcon, plusIcon);
+		
+				trashIcon.addEventListener("click", e => {
+					let li = e.target.parentElement.parentNode.parentNode;
+					li.remove();
+				});
+
+				editIcon.addEventListener("click", e => {
+					let modalWindow = document.createElement("div"),
+							modalContent = document.createElement("div"),
+							modalFooter = document.createElement("div"),
+							questionId = e.target.parentNode.parentNode.parentNode.parentNode.id;
+					modalWindow.classList.add("modal");
+					modalWindow.id = `modal${questionId}`;
+					modalContent.classList.add("modal-content");
+					modalContent.innerHTML = `<h4>Modal Header</h4>
+																		<p>A bunch of text</p>`;
+					modalFooter.classList.add("modal-footer");
+					modalFooter.innerHTML = `<a href="#!" class="modal-close waves-effect waves-green btn-flat">Сохранить</a>`;
+					modalWindow.append(modalContent, modalFooter);
+
+					editIconLink.href = `#modal${questionId}`;
+					document.body.append(modalWindow);
+				});
+				editIconLink.append(editIcon);
+				plusIconLink.append(plusIcon);
+				icons.append(editIconLink, trashIcon, plusIconLink);
 				return icons;
 		} else {
 			let	editIcon = document.createElement("i"),
@@ -162,6 +196,10 @@ class AdminPanel {
 				icons.classList.add("edit-icons");
 				editIcon.classList.add("far", "fa-edit");
 				trashIcon.classList.add("fas", "fa-trash-alt");
+				trashIcon.addEventListener("click", (e) => {
+					let answer = e.target.parentNode.parentNode;
+					answer.remove();
+				});
 				icons.append(editIcon, trashIcon);
 				return icons;
 		}
