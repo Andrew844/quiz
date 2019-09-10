@@ -107,6 +107,9 @@ class AdminPanel {
 			var elems = document.querySelectorAll('.modal'),
 					instances = M.Modal.init(elems);
 		});
+		document.addEventListener("DOMContentLoaded", function () {
+			M.updateTextFields();
+		})
 	}
 
 	//Показать список всех вопросов при клике на кнопку "Показать вопросы"
@@ -129,6 +132,7 @@ class AdminPanel {
 
 	//Выводит все вопросы и ответы к ним при клике на кнопку "Показать все вопросы"
 	 showQuestionsAndAnswers () {
+		this.editAllQuestions.innerHTML = "";
 		fetch(this.address + "/questions")
 			.then(response => response.json())
 			.then(questionsAndAnswersArr => {
@@ -168,23 +172,13 @@ class AdminPanel {
 					li.remove();
 				});
 
-				editIcon.addEventListener("click", e => {
-					let modalWindow = document.createElement("div"),
-							modalContent = document.createElement("div"),
-							modalFooter = document.createElement("div"),
-							questionId = e.target.parentNode.parentNode.parentNode.parentNode.id;
-					modalWindow.classList.add("modal");
-					modalWindow.id = `modal${questionId}`;
-					modalContent.classList.add("modal-content");
-					modalContent.innerHTML = `<h4>Modal Header</h4>
-																		<p>A bunch of text</p>`;
-					modalFooter.classList.add("modal-footer");
-					modalFooter.innerHTML = `<a href="#!" class="modal-close waves-effect waves-green btn-flat">Сохранить</a>`;
-					modalWindow.append(modalContent, modalFooter);
-
-					editIconLink.href = `#modal${questionId}`;
-					document.body.append(modalWindow);
+				editIconLink.addEventListener("click", e => {
+					let li = e.target.parentNode.parentNode.parentNode.parentNode;
+					this.saveQuestionChanges(li.id);
 				});
+
+				editIconLink.href = `#modal1`;
+				editIconLink.classList.add("modal-trigger");
 				editIconLink.append(editIcon);
 				plusIconLink.append(plusIcon);
 				icons.append(editIconLink, trashIcon, plusIconLink);
@@ -196,13 +190,29 @@ class AdminPanel {
 				icons.classList.add("edit-icons");
 				editIcon.classList.add("far", "fa-edit");
 				trashIcon.classList.add("fas", "fa-trash-alt");
-				trashIcon.addEventListener("click", (e) => {
+				trashIcon.addEventListener("click", e => {
 					let answer = e.target.parentNode.parentNode;
 					answer.remove();
 				});
 				icons.append(editIcon, trashIcon);
 				return icons;
 		}
+	}
+
+	saveQuestionChanges (liId) {
+		let saveBtn = document.querySelector("#modal1 a");
+		saveBtn.addEventListener("click", e => {
+			let newQuestion = e.target.parentElement.firstElementChild.firstElementChild,
+					li = document.querySelectorAll("li");
+			for (let i = 0; i < li.length; i++) {
+				if (li[i].id === liId) {
+					let OldQuestion = li[i].firstChild.firstChild;
+					OldQuestion.innerText = newQuestion.value;
+					newQuestion.value = "";
+					li[i].id = liId++;
+				}
+			}
+		})
 	}
 
 	makeAnswersArr ({answers}) {

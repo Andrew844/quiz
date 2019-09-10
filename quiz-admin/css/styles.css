@@ -406,4 +406,35 @@ section.edit-questions .back button .fas:hover {
   -webkit-transform: rotate(360deg);
           transform: rotate(360deg);
 }
+
+section.edit-questions .modal {
+  width: 600px;
+  margin-top: 10%;
+}
+
+section.edit-questions .modal .modal-header {
+  margin-top: 20px;
+}
+
+section.edit-questions .modal .modal-header h5 {
+  text-align: center;
+}
+
+section.edit-questions .modal .modal-content .row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+section.edit-questions .modal .modal-content .row .input-field {
+  width: 420px;
+  margin: auto;
+}
+
+section.edit-questions .modal .modal-content .row .modal-close {
+  margin-left: 30px;
+}
 /*# sourceMappingURL=styles.css.map */
